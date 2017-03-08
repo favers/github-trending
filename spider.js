@@ -17,8 +17,8 @@ async function gitAddCommitPush(date,fileName){
     // let gitPush = 'git push -u origin master';
 
     await exec('git add -A')
-    await exec('git commit -m "node git add test"')
-    await exec('git push -u origin master')
+    await exec('git commit -m "exec git add test"')
+    await exec('git push')
 }   
 
 gitAddCommitPush('2017-03-08 test add','spider.js');
