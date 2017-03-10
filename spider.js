@@ -42,9 +42,8 @@ function getData(html) {
 async function wirteFile(date, data) {
     let writeStr = `### ${date} \n`;
     data.map((item)=>{
-        writeStr += `* [${(item.link).slice(1,-0)}](https://github.com/${item.link}):${item.desc} \n`;
+        writeStr += `* [${(item.link).slice(1)}](https://github.com/${item.link}):${item.desc} \n`;
     });
-    console.log(writeStr);
     fs.writeFileSync(`./${date}.md`, writeStr);
 }
 
@@ -54,7 +53,6 @@ async function start() {
     let html = await requestHtml();
     let data = getData(html);
     await wirteFile(formatDate, data);
-    // console.log(data);
     console.log('开始提交数据');
     await gitAddCommitPush(formatDate);
     console.log('结束本次任务');
@@ -62,7 +60,7 @@ async function start() {
 
 
 (function () {
-    // schedule.scheduleJob('30 * * * * *', function () {
+    schedule.scheduleJob('30 * * * * *', function () {
         start();
-    // })
+    })
 }())
