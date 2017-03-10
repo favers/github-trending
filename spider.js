@@ -39,18 +39,13 @@ function getData(html) {
 }
 
 // 将数据写入文件
-function wirteFile(date, data) {
+async function wirteFile(date, data) {
     let writeStr = `### ${date} \n`;
     data.map((item)=>{
-        writeStr += `[${item.link}](https://github.com/${item.link}):${item.desc}`
+        writeStr += `* [${item.link}](https://github.com/${item.link}):${item.desc} \n`;
     });
-
-    fs.writeFile(`./${date}.md`, writeStr, (err) => {
-        if (err) {
-            console.log(err);
-        }
-        console.log('写入文件结束');
-    })
+    console.log(writeStr);
+    await fs.writeFileSync(`./${date}.md`, writeStr);
 }
 
 // 开始程序
@@ -61,13 +56,13 @@ async function start() {
     await wirteFile(formatDate, data);
     // console.log(data);
     console.log('开始提交数据');
-    gitAddCommitPush(formatDate);
+    await gitAddCommitPush(formatDate);
     console.log('结束本次任务');
 }
 
 
 (function () {
-    schedule.scheduleJob('30 * * * * *', function () {
+    // schedule.scheduleJob('30 * * * * *', function () {
         start();
-    })
+    // })
 }())
