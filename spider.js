@@ -3,6 +3,9 @@
 const request = require('superagent');
 const cheerio = require('cheerio');
 const fs = require('fs');
+const schedule = require('node-schedule');
+const shell = require('shelljs');
+
 const exec = require('child_process').exec; 
 
 const URL = 'https://github.com/trending/javascript';
@@ -21,4 +24,10 @@ async function gitAddCommitPush(date,fileName){
     await exec('git push')
 }   
 
-gitAddCommitPush('2017-03-08 test add','spider.js');
+// gitAddCommitPush('2017-03-08 test add','spider.js');
+
+(function scheduleCronstyle(){
+    schedule.scheduleJob('30 * * * * *',function(){
+        shell.exec('git add -A && git commit -m "test shell" && git push');
+    })
+}())

@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^0.22.0",
+    "node-schedule": "^1.2.0",
+    "shelljs": "^0.7.7",
     "superagent": "^3.5.0"
   }
 }
