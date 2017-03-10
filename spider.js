@@ -42,10 +42,10 @@ function getData(html) {
 async function wirteFile(date, data) {
     let writeStr = `### ${date} \n`;
     data.map((item)=>{
-        writeStr += `* [${item.link}](https://github.com/${item.link}):${item.desc} \n`;
+        writeStr += `* [${(item.link).slice(1,-0)}](https://github.com/${item.link}):${item.desc} \n`;
     });
     console.log(writeStr);
-    await fs.writeFileSync(`./${date}.md`, writeStr);
+    fs.writeFileSync(`./${date}.md`, writeStr);
 }
 
 // 开始程序
