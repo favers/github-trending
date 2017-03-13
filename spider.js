@@ -60,7 +60,7 @@ async function start() {
 
 
 (function () {
-    schedule.scheduleJob('0 12 19 * * *', function () {
+    schedule.scheduleJob('0 31 16 * * *', function () {
         start();
     })
 }())
