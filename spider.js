@@ -12,6 +12,7 @@ const URL = 'https://github.com/trending/javascript';
 // 格式化当前日期
 let date = new Date();
 let formatDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+let currentMonth = `${date.getFullYear()}-${date.getMonth() + 1}`;
 
 // 获取页面内容
 function requestHtml() {
@@ -41,10 +42,15 @@ function getData(html) {
 // 将数据写入文件
 async function wirteFile(date, data) {
     let writeStr = `### ${date} \n`;
-    data.map((item)=>{
+    data.map((item) => {
         writeStr += `* [${(item.link).slice(1)}](https://github.com/${item.link}):${item.desc} \n`;
     });
-    fs.writeFileSync(`./${date}.md`, writeStr);
+
+    if (!fs.existsSync(currentMonth)) {
+        fs.mkdirSync(currentMonth);
+    }
+
+    fs.writeFileSync(`./${currentMonth}/${date}.md`, writeStr);
 }
 
 // 开始程序
@@ -60,7 +66,7 @@ async function start() {
 
 
 (function () {
-    schedule.scheduleJob('0 31 16 * * *', function () {
+    schedule.scheduleJob('0 40 16 * * *', function () {
         start();
     })
 }())
