@@ -22,6 +22,7 @@
             "repo": "git@github.com:favers/github-trending.git",
             "path": "/home/favers/www/trending",
             "ssh_options": "StrictHostKeyChecking=no",
+            "post-deploy":"npm install --registry=https://registry.npm.taobao.org",
             "env": {
                 "NODE_ENV": "production"
             }
