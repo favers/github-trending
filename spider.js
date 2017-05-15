@@ -1,5 +1,6 @@
 'use strict';
 
+
 const request = require('superagent');
 const cheerio = require('cheerio');
 const fs = require('fs');
