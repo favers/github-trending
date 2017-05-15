@@ -22,7 +22,7 @@
             "repo": "git@github.com:favers/github-trending.git",
             "path": "/home/favers/www/trending",
             "ssh_options": "StrictHostKeyChecking=no",
-            "post-deploy":"npm install",
+            "post-deploy":"npm install && pm2 startOrRestart ecosystem.json --env production",
             "env": {
                 "NODE_ENV": "production"
             }
