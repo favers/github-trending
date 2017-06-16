@@ -72,7 +72,7 @@ async function start() {
 
 (function () {
     console.log('程序开始运行');
-    schedule.scheduleJob('* 1 * * * *', function () {
+    schedule.scheduleJob('00 05 15 * * *', function () {
         start();
     })
 }())
