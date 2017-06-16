@@ -22,8 +22,12 @@ function requestHtml() {
 
 // 提交采集的数据到git
 function gitAddCommitPush(date) {
-    if (shell.exec(`git add -A && git commit -m "add ${date}" && git push`).code === 0) {
-        console.log('提交成功');
+    try {
+        if (shell.exec(`git add -A && git commit -m "add ${date}" && git push`).code === 0) {
+            console.log('提交成功');
+        }
+    } catch (error) {
+        console.log('提交失败');
     }
 }
 
@@ -68,7 +72,7 @@ async function start() {
 
 (function () {
     console.log('程序开始运行');
-    //schedule.scheduleJob('00 30 14 * * *', function () {
+    schedule.scheduleJob('* 1 * * * *', function () {
         start();
-    //})
+    })
 }())
