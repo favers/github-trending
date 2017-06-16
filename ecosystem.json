@@ -22,9 +22,9 @@
             "repo": "git@github.com:favers/github-trending.git",
             "path": "/var/www/trending",
             "ssh_options": "StrictHostKeyChecking=no",
-            "pre-setup": "npm install",
+            // "pre-setup": "npm install",
             "pre-deploy-local": "echo 'This is a local executed command'",
-            // "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production",
+            "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production",
             "env": {
                 "NODE_ENV": "production"
             }
