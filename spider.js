@@ -59,7 +59,7 @@ async function start() {
     let date = new Date();
     let formatDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     let currentMonth = `${date.getFullYear()}-${date.getMonth() + 1}`;
-    
+
     console.log('开始爬取数据');
     let html = await requestHtml();
     let data = getData(html);
@@ -72,7 +72,7 @@ async function start() {
 
 (function () {
     console.log('程序开始运行');
-    schedule.scheduleJob('00 15 15 * * *', function () {
+    schedule.scheduleJob('00 00 9 * * *', function () {
         start();
     })
 }())
