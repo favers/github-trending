@@ -10,11 +10,6 @@ const shell = require('shelljs');
 // 抓取url地址
 const URL = 'https://github.com/trending/javascript';
 
-// 格式化当前日期
-let date = new Date();
-let formatDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-let currentMonth = `${date.getFullYear()}-${date.getMonth() + 1}`;
-
 // 获取页面内容
 function requestHtml() {
     return request.get(URL).then(res => res.text);
@@ -60,6 +55,11 @@ async function wirteFile(date, data) {
 
 // 开始程序
 async function start() {
+    // 格式化当前日期
+    let date = new Date();
+    let formatDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    let currentMonth = `${date.getFullYear()}-${date.getMonth() + 1}`;
+    
     console.log('开始爬取数据');
     let html = await requestHtml();
     let data = getData(html);
